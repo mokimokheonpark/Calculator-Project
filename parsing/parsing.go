@@ -109,6 +109,11 @@ func ParseTree(str string) (Expression, error) {
 			return nil, err
 		}
 
+		// handle the case of division by zero
+		if tokens[1] == "/" && rightNumber == 0 {
+			return nil, errors.New("division by zero")
+		}
+		
 		return expression, nil
 
 	// the number of token is more than 3
