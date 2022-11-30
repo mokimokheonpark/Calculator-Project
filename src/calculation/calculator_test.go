@@ -13,3 +13,4 @@ func TestCalculateFails(t *testing.T) {
     assert.Equal(t, value, nil)
     assert.EqualError(t, err, "invalid operation: division by zero")
 }
+
