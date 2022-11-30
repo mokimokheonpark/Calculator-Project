@@ -1,7 +1,6 @@
 package calculation
 
 // Number: struct and method
-
 type Number struct {
 	Value float64
 }
@@ -11,7 +10,6 @@ func (n Number) Calculate() float64 {
 }
 
 // Addition: struct and method
-
 type Addition struct {
 	LeftNumber  float64
 	RightNumber float64
@@ -22,7 +20,6 @@ func (a Addition) Calculate() float64 {
 }
 
 // Subtraction: struct and method
-
 type Subtraction struct {
 	LeftNumber  float64
 	RightNumber float64
@@ -33,7 +30,6 @@ func (s Subtraction) Calculate() float64 {
 }
 
 // Multiplication: struct and method
-
 type Multiplication struct {
 	LeftNumber  float64
 	RightNumber float64
@@ -44,7 +40,6 @@ func (m Multiplication) Calculate() float64 {
 }
 
 // Division: struct and method
-
 type Division struct {
 	LeftNumber  float64
 	RightNumber float64
@@ -55,7 +50,9 @@ func (d Division) Calculate() float64 {
 }
 
 // Expression: interface of methods
-
 type Expression interface {
 	Calculate() float64
+}
+
+func main() {
 }

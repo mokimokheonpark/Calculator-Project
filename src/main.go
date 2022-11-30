@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"github.com/mokimokheonpark/calculator_project2/parsing"
+	parsing "calculator/parsing"
 )
 
 // main function
@@ -25,7 +25,7 @@ func main() {
 		}
 
 		// make a parse tree using input
-		equation, err := ParseTree(input)
+		equation, err := parsing.ParseTree(input)
 
 		// if an error exists in the parse tree, the corresponding error will be printed
 		if err != nil {
@@ -34,6 +34,5 @@ func main() {
 		} else {
 			fmt.Println(equation.Calculate())
 		}
-
 	}
 }

@@ -2,31 +2,29 @@ package parsing
 
 import (
 	"errors"
+    calculation "calculator/calculation"
 	"strconv"
 	"strings"
-	"github.com/mokimokheonpark/calculator_project2/calculation"
 )
 
 // function which handles only four valid operations
-
-func Operation(operator string, leftNum float64, rightNum float64) (Expression, error) {
+func Operation(operator string, leftNum float64, rightNum float64) (calculation.Expression, error) {
 	switch operator {
 	case "+":
-		return Addition{LeftNumber: leftNum, RightNumber: rightNum}, nil
+		return calculation.Addition{LeftNumber: leftNum, RightNumber: rightNum}, nil
 	case "-":
-		return Subtraction{LeftNumber: leftNum, RightNumber: rightNum}, nil
+		return calculation.Subtraction{LeftNumber: leftNum, RightNumber: rightNum}, nil
 	case "*":
-		return Multiplication{LeftNumber: leftNum, RightNumber: rightNum}, nil
+		return calculation.Multiplication{LeftNumber: leftNum, RightNumber: rightNum}, nil
 	case "/":
-		return Division{LeftNumber: leftNum, RightNumber: rightNum}, nil
+		return calculation.Division{LeftNumber: leftNum, RightNumber: rightNum}, nil
 	default:
 		return nil, errors.New("invalid operator")
 	}
 }
 
 // funcion which checks input validation using parse tree
-
-func ParseTree(str string) (Expression, error) {
+func ParseTree(str string) (calculation.Expression, error) {
 
 	chars := []rune(str)
 	var token string
@@ -80,7 +78,7 @@ func ParseTree(str string) (Expression, error) {
 			return nil, errors.New("invalid number")
 		}
 
-		return Number{Value: number}, nil
+		return calculation.Number{Value: number}, nil
 
 	// the number of token is 2
 	case 2:
