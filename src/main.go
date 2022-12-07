@@ -2,9 +2,9 @@ package main
 
 import (
 	"bufio"
+	"calculator_project/parser"
 	"fmt"
 	"os"
-	parsing "calculator/parsing"
 )
 
 // main function
@@ -12,8 +12,7 @@ import (
 func main() {
 
 	// main loop
-	for true {
-
+	for {
 		// input from command line
 		scanner := bufio.NewScanner(os.Stdin)
 		scanner.Scan()
@@ -24,15 +23,25 @@ func main() {
 			break
 		}
 
-		// make a parse tree using input
-		equation, err := parsing.ParseTree(input)
+		// using the input, get tokens
+		tokens := parser.GetTokens(input)
 
-		// if an error exists in the parse tree, the corresponding error will be printed
-		if err != nil {
-			fmt.Println("Error:", err)
-			// otherwise, the calculated value will be printed
+		// using the tokens, get the corresponding expression or error
+		expression, parserError := parser.Parser(tokens)
+
+		// if parser finds an error, the corresponding error will be printed
+		if parserError != nil {
+			fmt.Println("Error:", parserError)
+			// otherwise, operation will be done
 		} else {
-			fmt.Println(equation.Calculate())
+			result, operationError := expression.Operate()
+			// if an error is found during operation, the corresponding error will be printed
+			if operationError != nil {
+				fmt.Println("Error:", operationError)
+				// otherwise, the operated value will be printed
+			} else {
+				fmt.Println(result)
+			}
 		}
 	}
 }
