@@ -1,4 +1,4 @@
-# calculator_project2 - in multiple packages with tests
+# Calculator Project - in multiple packages with tests
 
 ## How to Init
 
