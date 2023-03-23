@@ -12,19 +12,19 @@ Implementation of Simple Calculator
 
 ## Overview
 
-Implemented a simple calculator using Go
+Implemented a simple calculator using Go.
 
 ## Installation
 
-Will be updated soon
+Will be updated soon.
 
 ## Usage
 
-Will be updated soon
+Will be updated soon.
 
 ## Contributing
 
-Will be updated soon
+Will be updated soon.
 
 ## License
 
