@@ -1,7 +1,7 @@
 package operation_test
 
 import (
-	"calculator_project/operation"
+	"calculator/operation"
 	"testing"
 )
 

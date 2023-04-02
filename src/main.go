@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"calculator_project/parser"
+	"calculator/parser"
 	"fmt"
 	"os"
 )
