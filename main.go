@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Calculator-Project/src/parser"
+	"Calculator-Project/parser"
 	"bufio"
 	"fmt"
 	"os"
