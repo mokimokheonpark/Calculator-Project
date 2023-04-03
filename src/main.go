@@ -2,9 +2,9 @@ package main
 
 import (
 	"bufio"
-	"calculator/parser"
 	"fmt"
 	"os"
+	"src/parser"
 )
 
 // main function
