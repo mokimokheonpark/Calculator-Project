@@ -1,9 +1,9 @@
 package parser_test
 
 import (
+	"Calculator-Project/src/operation"
+	"Calculator-Project/src/parser"
 	"reflect"
-	"src/operation"
-	"src/parser"
 	"testing"
 )
 

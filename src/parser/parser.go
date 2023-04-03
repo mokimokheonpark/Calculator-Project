@@ -1,8 +1,8 @@
 package parser
 
 import (
+	"Calculator-Project/src/operation"
 	"errors"
-	"src/operation"
 	"strconv"
 	"strings"
 )

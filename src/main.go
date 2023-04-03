@@ -1,10 +1,10 @@
 package main
 
 import (
+	"Calculator-Project/src/parser"
 	"bufio"
 	"fmt"
 	"os"
-	"src/parser"
 )
 
 // main function
