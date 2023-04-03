@@ -1,10 +1,11 @@
 package main
 
 import (
-	"Calculator-Project/parser"
 	"bufio"
 	"fmt"
 	"os"
+
+	"github.com/mokimokheonpark/Calculator-Project/parser"
 )
 
 // main function

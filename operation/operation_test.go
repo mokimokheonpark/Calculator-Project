@@ -1,8 +1,9 @@
 package operation_test
 
 import (
-	"Calculator-Project/operation"
 	"testing"
+
+	"github.com/mokimokheonpark/Calculator-Project/operation"
 )
 
 var err string = "Wrong Result"

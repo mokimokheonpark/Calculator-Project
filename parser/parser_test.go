@@ -1,10 +1,11 @@
 package parser_test
 
 import (
-	"Calculator-Project/operation"
-	"Calculator-Project/parser"
 	"reflect"
 	"testing"
+
+	"github.com/mokimokheonpark/Calculator-Project/operation"
+	"github.com/mokimokheonpark/Calculator-Project/parser"
 )
 
 var err string = "Wrong Result"
