@@ -8,7 +8,7 @@ Implemented a simple calculator using Go.
 
 ## Installation
 
-Will be updated soon.
+Clone the repository using the following command: git clone
 
 ## Usage
 
