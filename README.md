@@ -14,7 +14,8 @@ Clone the repository using the following command: git clone https://github.com/m
 
 - First, navigate to the cloned repository directory
 - You can simply run the "main.go" file using the following command: go run main.go
-- You can also make the executable file using the following command: go build, and then run the executable file using the following command: ./Calculator-Project
+- You can also make the executable file using the following command: go build  
+  and then run the executable file using the following command: ./Calculator-Project
 
 ## Tests
 
