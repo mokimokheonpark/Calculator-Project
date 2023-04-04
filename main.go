@@ -2,9 +2,10 @@ package main
 
 import (
 	"bufio"
-	"calculator_project/parser"
 	"fmt"
 	"os"
+
+	"github.com/mokimokheonpark/Calculator-Project/parser"
 )
 
 // main function

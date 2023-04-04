@@ -1,10 +1,11 @@
 package parser
 
 import (
-	"calculator/operation"
 	"errors"
 	"strconv"
 	"strings"
+
+	"github.com/mokimokheonpark/Calculator-Project/operation"
 )
 
 // GetTokens: given a string, get the array of all tokens
