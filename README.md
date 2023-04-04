@@ -1,10 +1,10 @@
 # Calculator Project
 
-Implementation of Simple Calculator
+Implementation of Simple Command-Line Calculator
 
 ## Overview
 
-Implemented a simple calculator using Go.
+Implemented a simple command-line calculator using Go programming language.
 
 ## Installation
 
