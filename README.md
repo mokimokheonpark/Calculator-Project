@@ -48,11 +48,11 @@ Here are some examples of input expressions and their expected outputs:
 - 6 + a : Error: invalid right number
 - 100 * : Error: insufficient number of numbers or operator
 
-## Tests
+## Testing
 
 To run the tests for the Calculator Project, follow these stpes:
 
-1. First, navigate to the cloned repository directory.
+1. Navigate to the cloned repository directory.
 2. Run the "operation_test.go" using the following command: go test -v ./operation
 3. Run the "parser_test.go" using the following command: go test -v ./parser
 
