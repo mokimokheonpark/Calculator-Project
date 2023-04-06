@@ -6,391 +6,229 @@ import (
 	"github.com/mokimokheonpark/Calculator-Project/operation"
 )
 
-var err string = "Wrong Result"
-
-// Unit Test of Number.Operate Function
+// Unit Testing of Number.Operate Function
 
 func TestNumberOperate(t *testing.T) {
-	number1, _ := operation.Number{Value: 5}.Operate()
-	if number1 != 5 {
-		t.Error(err)
+	testCases := []struct {
+		value    float64
+		expected float64
+	}{
+		{5, 5},
+		{-12.345, -12.345},
+		{0, 0},
 	}
 
-	number2, _ := operation.Number{Value: -12.345}.Operate()
-	if number2 != -12.345 {
-		t.Error(err)
-	}
-
-	number3, _ := operation.Number{Value: 0}.Operate()
-	if number3 != 0 {
-		t.Error(err)
+	for _, testCase := range testCases {
+		result, _ := operation.Number{Value: testCase.value}.Operate()
+		if result != testCase.expected {
+			t.Errorf("Expected: %v, but got: %v", testCase.expected, result)
+		}
 	}
 }
 
-// Unit Test of Addition.Operate Function
+// Unit Testing of Addition.Operate Function
 
 func TestAdditionOperate(t *testing.T) {
-	addition1, _ := operation.Addition{LeftNumber: 1, RightNumber: 2}.Operate()
-	if addition1 != 3 {
-		t.Error(err)
+	testCases := []struct {
+		leftNumber  float64
+		rightNumber float64
+		expected    float64
+	}{
+		{1, 2, 3},
+		{6, -1, 5},
+		{-100, 15, -85},
+		{-1, -10000, -10001},
+		{0, 0, 0},
+		{7, 0, 7},
+		{0, -2, -2},
+		{-5, 5, 0},
+		{1, 0.1, 1.1},
+		{-0.001, 0, -0.001},
+		{1.234, -5.678, -4.444},
+		{-2.5, -7.5, -10},
+		{5.00, 6.00000, 11},
 	}
 
-	addition2, _ := operation.Addition{LeftNumber: 6, RightNumber: -1}.Operate()
-	if addition2 != 5 {
-		t.Error(err)
+	for _, testCase := range testCases {
+		result, _ := operation.Addition{LeftNumber: testCase.leftNumber, RightNumber: testCase.rightNumber}.Operate()
+		if result != testCase.expected {
+			t.Errorf("Expected: %v, but got: %v", testCase.expected, result)
+		}
 	}
 
-	addition3, _ := operation.Addition{LeftNumber: -100, RightNumber: 15}.Operate()
-	if addition3 != -85 {
-		t.Error(err)
+	_, overflowErr := operation.Addition{LeftNumber: 1.7e+308, RightNumber: 1.2e+308}.Operate()
+	if overflowErr == nil {
+		t.Error("Expected overflow error but got nil")
 	}
 
-	addition4, _ := operation.Addition{LeftNumber: -1, RightNumber: -10000}.Operate()
-	if addition4 != -10001 {
-		t.Error(err)
-	}
-
-	addition5, _ := operation.Addition{LeftNumber: 0, RightNumber: 0}.Operate()
-	if addition5 != 0 {
-		t.Error(err)
-	}
-
-	addition6, _ := operation.Addition{LeftNumber: 7, RightNumber: 0}.Operate()
-	if addition6 != 7 {
-		t.Error(err)
-	}
-
-	addition7, _ := operation.Addition{LeftNumber: 0, RightNumber: -2}.Operate()
-	if addition7 != -2 {
-		t.Error(err)
-	}
-
-	addition8, _ := operation.Addition{LeftNumber: -5, RightNumber: 5}.Operate()
-	if addition8 != 0 {
-		t.Error(err)
-	}
-
-	addition9, _ := operation.Addition{LeftNumber: 1, RightNumber: 0.1}.Operate()
-	if addition9 != 1.1 {
-		t.Error(err)
-	}
-
-	addition10, _ := operation.Addition{LeftNumber: -0.001, RightNumber: 0}.Operate()
-	if addition10 != -0.001 {
-		t.Error(err)
-	}
-
-	addition11, _ := operation.Addition{LeftNumber: 1.234, RightNumber: -5.678}.Operate()
-	if addition11 != -4.444 {
-		t.Error(err)
-	}
-
-	addition12, _ := operation.Addition{LeftNumber: -2.5, RightNumber: -7.5}.Operate()
-	if addition12 != -10 {
-		t.Error(err)
-	}
-
-	addition13, _ := operation.Addition{LeftNumber: 5.00, RightNumber: 6.00000}.Operate()
-	if addition13 != 11 {
-		t.Error(err)
-	}
-
-	_, addition14Error := operation.Addition{LeftNumber: 1.7e+308, RightNumber: 1.2e+308}.Operate()
-	if addition14Error == nil {
-		t.Error(err)
-	}
-
-	_, addition15Error := operation.Addition{LeftNumber: -1.5e+308, RightNumber: -0.3e+308}.Operate()
-	if addition15Error == nil {
-		t.Error(err)
+	_, underflowErr := operation.Addition{LeftNumber: -1.5e+308, RightNumber: -0.3e+308}.Operate()
+	if underflowErr == nil {
+		t.Error("Expected underflow error but got nil")
 	}
 }
 
-// Unit Test of Subtraction.Operate Function
+// Unit Testing of Subtraction.Operate Function
 
 func TestSubtractionOperate(t *testing.T) {
-	subtraction1, _ := operation.Subtraction{LeftNumber: 7, RightNumber: 2}.Operate()
-	if subtraction1 != 5 {
-		t.Error(err)
+	testCases := []struct {
+		leftNumber  float64
+		rightNumber float64
+		expected    float64
+	}{
+		{7, 2, 5},
+		{36, -3, 39},
+		{-100, 11, -111},
+		{-10000, -8800, -1200},
+		{0, 0, 0},
+		{6, 0, 6},
+		{0, -22, 22},
+		{5, 5, 0},
+		{2, 0.3, 1.7},
+		{-0.0000009, 0, -0.0000009},
+		{1.2345, -6.789, 8.0235},
+		{-3.5, -6.5, 3},
+		{10.00, 4.0000000000, 6},
 	}
 
-	subtraction2, _ := operation.Subtraction{LeftNumber: 36, RightNumber: -3}.Operate()
-	if subtraction2 != 39 {
-		t.Error(err)
+	for _, testCase := range testCases {
+		result, _ := operation.Subtraction{LeftNumber: testCase.leftNumber, RightNumber: testCase.rightNumber}.Operate()
+		if result != testCase.expected {
+			t.Errorf("Expected %v, but got %v", testCase.expected, result)
+		}
 	}
 
-	subtraction3, _ := operation.Subtraction{LeftNumber: -100, RightNumber: 11}.Operate()
-	if subtraction3 != -111 {
-		t.Error(err)
+	_, overflowError := operation.Subtraction{LeftNumber: 1.6e+308, RightNumber: -1.5e+308}.Operate()
+	if overflowError == nil {
+		t.Error("Expected overflow error, but got nil")
 	}
 
-	subtraction4, _ := operation.Subtraction{LeftNumber: -10000, RightNumber: -8800}.Operate()
-	if subtraction4 != -1200 {
-		t.Error(err)
-	}
-
-	subtraction5, _ := operation.Subtraction{LeftNumber: 0, RightNumber: 0}.Operate()
-	if subtraction5 != 0 {
-		t.Error(err)
-	}
-
-	subtraction6, _ := operation.Subtraction{LeftNumber: 6, RightNumber: 0}.Operate()
-	if subtraction6 != 6 {
-		t.Error(err)
-	}
-
-	subtraction7, _ := operation.Subtraction{LeftNumber: 0, RightNumber: -22}.Operate()
-	if subtraction7 != 22 {
-		t.Error(err)
-	}
-
-	subtraction8, _ := operation.Subtraction{LeftNumber: 5, RightNumber: 5}.Operate()
-	if subtraction8 != 0 {
-		t.Error(err)
-	}
-
-	subtraction9, _ := operation.Subtraction{LeftNumber: 2, RightNumber: 0.3}.Operate()
-	if subtraction9 != 1.7 {
-		t.Error(err)
-	}
-
-	subtraction10, _ := operation.Subtraction{LeftNumber: -0.0000009, RightNumber: 0}.Operate()
-	if subtraction10 != -0.0000009 {
-		t.Error(err)
-	}
-
-	subtraction11, _ := operation.Subtraction{LeftNumber: 1.2345, RightNumber: -6.789}.Operate()
-	if subtraction11 != 8.0235 {
-		t.Error(err)
-	}
-
-	subtraction12, _ := operation.Subtraction{LeftNumber: -3.5, RightNumber: -6.5}.Operate()
-	if subtraction12 != 3 {
-		t.Error(err)
-	}
-
-	subtraction13, _ := operation.Subtraction{LeftNumber: 10.00, RightNumber: 4.0000000000}.Operate()
-	if subtraction13 != 6 {
-		t.Error(err)
-	}
-
-	_, subtraction14Error := operation.Subtraction{LeftNumber: 1.6e+308, RightNumber: -1.5e+308}.Operate()
-	if subtraction14Error == nil {
-		t.Error(err)
-	}
-
-	_, subtraction15Error := operation.Subtraction{LeftNumber: -1.7e+308, RightNumber: 0.1e+308}.Operate()
-	if subtraction15Error == nil {
-		t.Error(err)
+	_, underflowError := operation.Subtraction{LeftNumber: -1.7e+308, RightNumber: 0.1e+308}.Operate()
+	if underflowError == nil {
+		t.Error("Expected underflow error, but got nil")
 	}
 }
 
-// Unit Test of Multiplication.Operate Function
+// Unit Testing of Multiplication.Operate Function
 
 func TestMultiplicationOperate(t *testing.T) {
-	multiplication1, _ := operation.Multiplication{LeftNumber: 2, RightNumber: 4}.Operate()
-	if multiplication1 != 8 {
-		t.Error(err)
+	testCases := []struct {
+		leftNumber  float64
+		rightNumber float64
+		expected    float64
+	}{
+		{2, 4, 8},
+		{5, -3, -15},
+		{-100, 12, -1200},
+		{-20, -4000, 80000},
+		{0, 0, 0},
+		{9, 0, 0},
+		{0, -123456789, 0},
+		{100, 100, 10000},
+		{99999999, 1, 99999999},
+		{10, 0.3, 3},
+		{-0.001, 400000, -400},
+		{3.5, -4.5, -15.75},
+		{-10.1, -0.111, 1.1211},
+		{9.00, 8.00000, 72},
 	}
 
-	multiplication2, _ := operation.Multiplication{LeftNumber: 5, RightNumber: -3}.Operate()
-	if multiplication2 != -15 {
-		t.Error(err)
+	for _, testCase := range testCases {
+		result, _ := operation.Multiplication{LeftNumber: testCase.leftNumber, RightNumber: testCase.rightNumber}.Operate()
+		if result != testCase.expected {
+			t.Errorf("Expected %v, but got %v", testCase.expected, result)
+		}
 	}
 
-	multiplication3, _ := operation.Multiplication{LeftNumber: -100, RightNumber: 12}.Operate()
-	if multiplication3 != -1200 {
-		t.Error(err)
+	_, overflowError1 := operation.Multiplication{LeftNumber: 1.79e+308, RightNumber: 100}.Operate()
+	if overflowError1 == nil {
+		t.Error("Expected overflow error, but got nil")
 	}
 
-	multiplication4, _ := operation.Multiplication{LeftNumber: -20, RightNumber: -4000}.Operate()
-	if multiplication4 != 80000 {
-		t.Error(err)
+	_, overflowError2 := operation.Multiplication{LeftNumber: -12.34, RightNumber: -1.797e+308}.Operate()
+	if overflowError2 == nil {
+		t.Error("Expected overflow error, but got nil")
 	}
 
-	multiplication5, _ := operation.Multiplication{LeftNumber: 0, RightNumber: 0}.Operate()
-	if multiplication5 != 0 {
-		t.Error(err)
+	_, underflowError1 := operation.Multiplication{LeftNumber: 1.8e+156, RightNumber: -1.8e+156}.Operate()
+	if underflowError1 == nil {
+		t.Error("Expected underflow error, but got nil")
 	}
 
-	multiplication6, _ := operation.Multiplication{LeftNumber: 9, RightNumber: 0}.Operate()
-	if multiplication6 != 0 {
-		t.Error(err)
-	}
-
-	multiplication7, _ := operation.Multiplication{LeftNumber: 0, RightNumber: -123456789}.Operate()
-	if multiplication7 != 0 {
-		t.Error(err)
-	}
-
-	multiplication8, _ := operation.Multiplication{LeftNumber: 100, RightNumber: 100}.Operate()
-	if multiplication8 != 10000 {
-		t.Error(err)
-	}
-
-	multiplication9, _ := operation.Multiplication{LeftNumber: 99999999, RightNumber: 1}.Operate()
-	if multiplication9 != 99999999 {
-		t.Error(err)
-	}
-
-	multiplication10, _ := operation.Multiplication{LeftNumber: 10, RightNumber: 0.3}.Operate()
-	if multiplication10 != 3 {
-		t.Error(err)
-	}
-
-	multiplication11, _ := operation.Multiplication{LeftNumber: -0.001, RightNumber: 400000}.Operate()
-	if multiplication11 != -400 {
-		t.Error(err)
-	}
-
-	multiplication12, _ := operation.Multiplication{LeftNumber: 3.5, RightNumber: -4.5}.Operate()
-	if multiplication12 != -15.75 {
-		t.Error(err)
-	}
-
-	multiplication13, _ := operation.Multiplication{LeftNumber: -10.1, RightNumber: -0.111}.Operate()
-	if multiplication13 != 1.1211 {
-		t.Error(err)
-	}
-
-	multiplication14, _ := operation.Multiplication{LeftNumber: 9.00, RightNumber: 8.00000}.Operate()
-	if multiplication14 != 72 {
-		t.Error(err)
-	}
-
-	_, multiplication15Error := operation.Multiplication{LeftNumber: 1.79e+308, RightNumber: 100}.Operate()
-	if multiplication15Error == nil {
-		t.Error(err)
-	}
-
-	_, multiplication16Error := operation.Multiplication{LeftNumber: 1.8e+156, RightNumber: -1.8e+156}.Operate()
-	if multiplication16Error == nil {
-		t.Error(err)
-	}
-
-	_, multiplication17Error := operation.Multiplication{LeftNumber: -1.0e+200, RightNumber: 1.2e+109}.Operate()
-	if multiplication17Error == nil {
-		t.Error(err)
-	}
-
-	_, multiplication18Error := operation.Multiplication{LeftNumber: -12.34, RightNumber: -1.797e+308}.Operate()
-	if multiplication18Error == nil {
-		t.Error(err)
+	_, underflowError2 := operation.Multiplication{LeftNumber: -1.0e+200, RightNumber: 1.2e+109}.Operate()
+	if underflowError2 == nil {
+		t.Error("Expected underflow error, but got nil")
 	}
 }
 
-// Unit Test of Division.Operate Function
+// Unit Testing of Division.Operate Function
 
 func TestDivisionOperate(t *testing.T) {
-	division1, _ := operation.Division{LeftNumber: 6, RightNumber: 2}.Operate()
-	if division1 != 3 {
-		t.Error(err)
+	testCases := []struct {
+		leftNumber  float64
+		rightNumber float64
+		expected    float64
+	}{
+		{6, 2, 3},
+		{15, -3, -5},
+		{-100, 8, -12.5},
+		{-3, -60000, 0.00005},
+		{0, 123456789, 0},
+		{987654321, 1, 987654321},
+		{7777777, 7777777, 1},
+		{90, 0.5, 180},
+		{-0.03, 200, -0.00015},
+		{10.5, -3.5, -3},
+		{-99.99, -6.6, 15.15},
+		{125.00, 5.00000, 25},
 	}
 
-	division2, _ := operation.Division{LeftNumber: 15, RightNumber: -3}.Operate()
-	if division2 != -5 {
-		t.Error(err)
+	for _, testCase := range testCases {
+		result, _ := operation.Division{LeftNumber: testCase.leftNumber, RightNumber: testCase.rightNumber}.Operate()
+		if result != testCase.expected {
+			t.Errorf("Expected %v, but got %v", testCase.expected, result)
+		}
 	}
 
-	division3, _ := operation.Division{LeftNumber: -100, RightNumber: 8}.Operate()
-	if division3 != -12.5 {
-		t.Error(err)
+	_, divisionByZeroError1 := operation.Division{LeftNumber: 21, RightNumber: 0}.Operate()
+	if divisionByZeroError1 == nil {
+		t.Error("Expected division by zero error, but got nil")
 	}
 
-	division4, _ := operation.Division{LeftNumber: -3, RightNumber: -60000}.Operate()
-	if division4 != 0.00005 {
-		t.Error(err)
-	}
-
-	division5, _ := operation.Division{LeftNumber: 0, RightNumber: 123456789}.Operate()
-	if division5 != 0 {
-		t.Error(err)
-	}
-
-	division6, _ := operation.Division{LeftNumber: 987654321, RightNumber: 1}.Operate()
-	if division6 != 987654321 {
-		t.Error(err)
-	}
-
-	division7, _ := operation.Division{LeftNumber: 7777777, RightNumber: 7777777}.Operate()
-	if division7 != 1 {
-		t.Error(err)
-	}
-
-	division8, _ := operation.Division{LeftNumber: 90, RightNumber: 0.5}.Operate()
-	if division8 != 180 {
-		t.Error(err)
-	}
-
-	division9, _ := operation.Division{LeftNumber: -0.03, RightNumber: 200}.Operate()
-	if division9 != -0.00015 {
-		t.Error(err)
-	}
-
-	division10, _ := operation.Division{LeftNumber: 10.5, RightNumber: -3.5}.Operate()
-	if division10 != -3 {
-		t.Error(err)
-	}
-
-	division11, _ := operation.Division{LeftNumber: -99.99, RightNumber: -6.6}.Operate()
-	if division11 != 15.15 {
-		t.Error(err)
-	}
-
-	division12, _ := operation.Division{LeftNumber: 125.00, RightNumber: 5.00000}.Operate()
-	if division12 != 25 {
-		t.Error(err)
-	}
-
-	_, division13Error := operation.Division{LeftNumber: 21, RightNumber: 0}.Operate()
-	if division13Error == nil {
-		t.Error(err)
-	}
-
-	_, division14Error := operation.Division{LeftNumber: 0, RightNumber: -0}.Operate()
-	if division14Error == nil {
-		t.Error(err)
+	_, divisionByZeroError2 := operation.Division{LeftNumber: 21, RightNumber: 0}.Operate()
+	if divisionByZeroError2 == nil {
+		t.Error("Expected division by zero error, but got nil")
 	}
 }
 
-// Unit Test of GetExpression Function
+// Unit Testing of GetExpression Function
 
 func TestGetExpression(t *testing.T) {
-	getExpression1, _ := operation.GetExpression("+", 1, 2)
-	var expression1 operation.Expression
-	expression1 = operation.Addition{LeftNumber: 1, RightNumber: 2}
-	if getExpression1 != expression1 {
-		t.Error(err)
+	testCases := []struct {
+		operator    string
+		leftNumber  float64
+		rightNumber float64
+		expected    operation.Expression
+	}{
+		{"+", 1, 2, operation.Addition{LeftNumber: 1, RightNumber: 2}},
+		{"-", 9, 7, operation.Subtraction{LeftNumber: 9, RightNumber: 7}},
+		{"*", 3, 5, operation.Multiplication{LeftNumber: 3, RightNumber: 5}},
+		{"/", 8, 4, operation.Division{LeftNumber: 8, RightNumber: 4}},
 	}
 
-	getExpression2, _ := operation.GetExpression("-", 9, 7)
-	var expression2 operation.Expression
-	expression2 = operation.Subtraction{LeftNumber: 9, RightNumber: 7}
-	if getExpression2 != expression2 {
-		t.Error(err)
+	for _, testCase := range testCases {
+		result, _ := operation.GetExpression(testCase.operator, testCase.leftNumber, testCase.rightNumber)
+		if result != testCase.expected {
+			t.Errorf("Expected %v, but got %v", testCase.expected, result)
+		}
 	}
 
-	getExpression3, _ := operation.GetExpression("*", 3, 5)
-	var expression3 operation.Expression
-	expression3 = operation.Multiplication{LeftNumber: 3, RightNumber: 5}
-	if getExpression3 != expression3 {
-		t.Error(err)
+	_, invalidOperatorError1 := operation.GetExpression("^", 2, 10)
+	if invalidOperatorError1 == nil {
+		t.Error("Expected invalid operator error, but got nil")
 	}
 
-	getExpression4, _ := operation.GetExpression("/", 8, 4)
-	var expression4 operation.Expression
-	expression4 = operation.Division{LeftNumber: 8, RightNumber: 4}
-	if getExpression4 != expression4 {
-		t.Error(err)
-	}
-
-	_, getExpression5Error := operation.GetExpression("^", 2, 10)
-	if getExpression5Error == nil {
-		t.Error(err)
-	}
-
-	_, getExpression6Error := operation.GetExpression("%", 20, 6)
-	if getExpression6Error == nil {
-		t.Error(err)
+	_, invalidOperatorError2 := operation.GetExpression("%", 20, 6)
+	if invalidOperatorError2 == nil {
+		t.Error("Expected invalid operator error, but got nil")
 	}
 }
