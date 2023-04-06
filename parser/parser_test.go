@@ -155,7 +155,7 @@ func TestParser(t *testing.T) {
 		if result != testCase.expected {
 			t.Errorf("Expected %v, but got %v", testCase.expected, result)
 		}
-		if err == nil && testCase.isError {
+		if testCase.isError && err == nil {
 			t.Error("Expected error, but got nil")
 		}
 	}
