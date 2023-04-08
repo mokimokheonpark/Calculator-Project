@@ -194,7 +194,7 @@ func TestDivisionOperate(t *testing.T) {
 		t.Error("Expected division by zero error, but got nil")
 	}
 
-	_, divisionByZeroError2 := operation.Division{LeftNumber: 21, RightNumber: 0}.Operate()
+	_, divisionByZeroError2 := operation.Division{LeftNumber: 0, RightNumber: 0}.Operate()
 	if divisionByZeroError2 == nil {
 		t.Error("Expected division by zero error, but got nil")
 	}
