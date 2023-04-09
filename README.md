@@ -55,9 +55,11 @@ To run the tests for the Calculator Project, follow these stpes:
 1. Navigate to the cloned repository directory.
 2. Run the "operation_test.go" using the following command: go test -v ./operation
 3. Run the "parser_test.go" using the following command: go test -v ./parser
+4. Run the "integration_test.go" using the following command: go test -v ./integration
 
 The "operation_test.go" covers the tests for the operation package, which performs the arithmetic operations.  
 The "parser_test.go" covers the tests for the parser package, which parses the input expression.
+The "integration_test.go" covers the tests for the interaction between operation package and parser package.
 
 ## Contributions
 
