@@ -4,7 +4,7 @@ The Calculator Project is a simple command-line calculator written in Go that pe
 
 ## Features
 
-The Calculator Project has the following features:
+This project has the following features:
 
 - The calculator is based on floating point numbers (float64).
 - The calculator is intentionally implemented to use only one arithmetic operation.
@@ -14,19 +14,19 @@ The Calculator Project has the following features:
 
 ## Prerequisite
 
-To run the Calculator Project, you will need:
+To run the project, you will need:
 
 - Go 1.16 or higher installed on your machine.
 
 ## Installation
 
-To install the Calculator Project,
+To install the project,
 
 - Clone the repository using the following command: git clone https://github.com/mokimokheonpark/Calculator-Project.git
 
 ## Usage
 
-To use the Calculator Project, follow these steps:
+To use the calculator, follow these steps:
 
 1. Navigate to the cloned repository directory.
 2. Follow either 2-1 or 2-2.
@@ -50,7 +50,7 @@ Here are some examples of input expressions and their expected outputs:
 
 ## Testing
 
-To run the tests for the Calculator Project, follow these stpes:
+To run the tests for the project, follow these stpes:
 
 1. Navigate to the cloned repository directory.
 2. Run the "operation_test.go" using the following command: go test -v ./operation
